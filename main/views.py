@@ -11,13 +11,33 @@ def index(response):
 def home(response):
   return render(response, "main/home.html", {})
 
-def getItem(response, itemid):
+def getList(response, itemid):
   ls = ToDoList.objects.get(id=itemid)
+  
+  if response.method == "POST":
+    # print(response.POST)
+    # if the save button is clicked
+    if response.POST.get("save"):
+      # loop through all the items in the list
+      for item in ls.item_set.all():
+        if response.POST.get("c"+ str(item.id))=="clicked":
+          item.complete = True
+        else:
+          item.complete = False
+        item.save()
+
+    elif response.POST.get("newItem"):
+      txt = response.POST.get("new")
+      if len(txt) > 2:
+        ls.item_set.create(text=txt, complete=False)
+      else:
+        print("invalid")
+  
   return render(response, "main/list.html", {
     "list": ls
   })
 
-def getItemByName(response, name):
+def getListByName(response, name):
   ls = ToDoList.objects.get(name=name)
   return HttpResponse(f"<h1>{ls.name}</h1>")
 
