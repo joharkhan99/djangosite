@@ -4,15 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Django Main App</title>
+  <title>
+    {% block title %}Django Main App{% endblock title %}
+  </title>
 </head>
 
 <body>
-
-  <p>
-    Base template
-  </p>
-
+  <div id="name">
+    {% block content %}
+    {% endblock content %}
+  </div>
 </body>
 
 </html>

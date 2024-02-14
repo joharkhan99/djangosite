@@ -5,7 +5,5 @@ urlpatterns = [
     path("", view=views.home, name="home"),
     
     path("<int:itemid>", view=views.getItem, name="getitem"),
-    path("<str:name>", view=views.getItemByName, name="itembyname"),
-    
-    
+    path("<str:name>", view=views.getItemByName, name="itembyname"),   
 ]
