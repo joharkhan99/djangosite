@@ -11,22 +11,35 @@ List: {{ list.name }}
 
 <form action="#" method="post">
   {% csrf_token %}
-  <ul>
-    {% for item in list.item_set.all %}
-    <li>
-      {{ item.text }}
-      {% if item.complete == True %}
-      <input type="checkbox" value="clicked" name="c{{item.id}}" checked>
-      {% else %}
-      <input type="checkbox" value="clicked" name="c{{item.id}}">
-      {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
 
-  <button type="submit" name="save" value="save">Save</button>
-  <input type="text" name="new">
-  <button type="submit" name="newItem" value="newItem">Add Item</button>
+
+
+
+  {% for item in list.item_set.all %}
+  <div class="input-group mb-3">
+    <div class="input-prepend">
+      <div class="input-group-text">
+        {% if item.complete == True %}
+        <input type="checkbox" value="clicked" name="c{{item.id}}" checked>
+        {% else %}
+        <input type="checkbox" value="clicked" name="c{{item.id}}">
+        {% endif %}
+      </div>
+    </div>
+
+    <input type="text" value="{{ item.text }}" class="form-control" disabled>
+  </div>
+  {% endfor %}
+
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <button type="submit" name="newItem" value="newItem" class="btn btn-success">Add Item</button>
+    </div>
+    <input type="text" name="new" class="form-control">
+  </div>
+
+  <button type="submit" name="save" value="save" class="btn btn-success">Save</button>
 </form>
 
 
