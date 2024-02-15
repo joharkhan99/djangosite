@@ -57,7 +57,7 @@
   <div class="sidenav">
     <a href="/">Home</a>
     <a href="/create">Create</a>
-    <a href="/2">View</a>
+    <a href="/view">View</a>
   </div>
 
 
@@ -67,9 +67,9 @@
         <h1 class="mt-2">My Site</h1>
         <hr class="mt-0 mb-4">
 
-        <!-- {% if user.is_authenticated %} -->
         {% block content %}
         {% endblock content %}
+        <!-- {% if user.is_authenticated %} -->
         <!-- {% else %}
         <p>
           You are not logged in.
