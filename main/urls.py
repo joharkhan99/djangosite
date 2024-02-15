@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from user_register import views as v
 
@@ -9,4 +9,6 @@ urlpatterns = [
     path("create/", view=views.create, name="create"),
     
     path("register/", v.register, name="register"),
+    path("", include("main.urls")),
+    path("", include("django.contrib.auth.urls")),
 ]
